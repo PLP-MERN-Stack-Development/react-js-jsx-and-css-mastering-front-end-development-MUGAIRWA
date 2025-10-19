@@ -6,6 +6,7 @@ import Button from './components/Button';
 import Layout from './components/Layout';
 import Card from './components/Card';
 import TaskManager from './components/TaskManager';
+import APIData from './components/APIData';
 import { ThemeProvider } from './context/ThemeContext';
 
 function App() {
@@ -60,12 +61,10 @@ function App() {
           <TaskManager />
         </div>
 
-        {/* API data display will go here */}
-        <Card title="API Data" className="mt-8" id="api">
-          <p className="text-gray-500 dark:text-gray-400">
-            Fetch and display data from an API here
-          </p>
-        </Card>
+        {/* API data display */}
+        <div className="mt-8" id="api">
+          <APIData />
+        </div>
       </Layout>
     </ThemeProvider>
   );
