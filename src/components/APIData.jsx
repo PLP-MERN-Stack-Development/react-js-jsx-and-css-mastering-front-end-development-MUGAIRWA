@@ -98,8 +98,8 @@ const APIData = () => {
   }
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-      <h2 className="text-2xl font-bold mb-6">API Data - Posts</h2>
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 animate-fade-in">
+      <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100">API Data - Posts</h2>
 
       {/* Search input */}
       <div className="mb-6">
@@ -119,11 +119,12 @@ const APIData = () => {
       </div>
 
       {/* Posts grid */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mb-6">
-        {currentPosts.map((post) => (
+      <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-6">
+        {currentPosts.map((post, index) => (
           <div
             key={post.id}
-            className="border rounded-lg p-4 hover:shadow-md transition-shadow dark:border-gray-700 dark:bg-gray-700"
+            className="border rounded-lg p-4 hover:shadow-lg hover:scale-105 transition-all duration-300 dark:border-gray-700 dark:bg-gray-700 animate-slide-in"
+            style={{ animationDelay: `${index * 0.1}s` }}
           >
             <h3 className="font-semibold text-lg mb-2 text-gray-900 dark:text-gray-100 line-clamp-2">
               {post.title}

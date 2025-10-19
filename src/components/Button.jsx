@@ -21,7 +21,7 @@ const Button = ({
   ...rest 
 }) => {
   // Base classes
-  const baseClasses = 'inline-flex items-center justify-center font-medium rounded focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors';
+  const baseClasses = 'inline-flex items-center justify-center font-medium rounded focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all duration-200 active:scale-95';
   
   // Variant classes
   const variantClasses = {

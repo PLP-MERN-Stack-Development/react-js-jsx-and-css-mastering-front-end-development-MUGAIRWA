@@ -65,8 +65,8 @@ const TaskManager = () => {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-      <h2 className="text-2xl font-bold mb-6">Task Manager</h2>
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 animate-fade-in">
+      <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100">Task Manager</h2>
 
       {/* Task input form */}
       <form onSubmit={handleSubmit} className="mb-6">
@@ -116,10 +116,11 @@ const TaskManager = () => {
             No tasks found
           </li>
         ) : (
-          filteredTasks.map((task) => (
+          filteredTasks.map((task, index) => (
             <li
               key={task.id}
-              className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 dark:border-gray-700"
+              className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 dark:border-gray-700 animate-slide-in"
+              style={{ animationDelay: `${index * 0.05}s` }}
             >
               <div className="flex items-center gap-3">
                 <input
