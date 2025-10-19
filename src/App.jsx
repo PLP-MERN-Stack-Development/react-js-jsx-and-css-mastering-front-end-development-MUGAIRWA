@@ -2,70 +2,72 @@ import { useState } from 'react';
 import './index.css';
 
 // Import your components here
-// import Button from './components/Button';
-// import Navbar from './components/Navbar';
-// import Footer from './components/Footer';
-// import TaskManager from './components/TaskManager';
+import Button from './components/Button';
+import Layout from './components/Layout';
+import Card from './components/Card';
+import TaskManager from './components/TaskManager';
+import { ThemeProvider } from './context/ThemeContext';
 
 function App() {
   const [count, setCount] = useState(0);
 
-  return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-      {/* Navbar component will go here */}
-      <header className="bg-white dark:bg-gray-800 shadow">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold">PLP Task Manager</h1>
-        </div>
-      </header>
+  // Define navbar and footer links
+  const navbarLinks = [
+    { label: 'Home', href: '#' },
+    { label: 'Tasks', href: '#tasks' },
+    { label: 'API', href: '#api' },
+  ];
 
-      <main className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <div className="bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg p-6">
+  const footerLinks = [
+    { label: 'Privacy', href: '#' },
+    { label: 'Terms', href: '#' },
+    { label: 'Contact', href: '#' },
+  ];
+
+  return (
+    <ThemeProvider>
+      <Layout navbarLinks={navbarLinks} footerLinks={footerLinks}>
+        <Card>
           <div className="flex flex-col items-center justify-center">
             <p className="text-lg mb-4">
               Edit <code className="font-mono bg-gray-200 dark:bg-gray-700 p-1 rounded">src/App.jsx</code> and save to test HMR
             </p>
-            
+
             <div className="flex items-center gap-4 my-4">
-              <button
+              <Button
+                variant="danger"
                 onClick={() => setCount((count) => count - 1)}
-                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
               >
                 -
-              </button>
+              </Button>
               <span className="text-xl font-bold">{count}</span>
-              <button
+              <Button
+                variant="success"
                 onClick={() => setCount((count) => count + 1)}
-                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors"
               >
                 +
-              </button>
+              </Button>
             </div>
 
             <p className="text-gray-500 dark:text-gray-400 mt-4">
               Implement your TaskManager component here
             </p>
           </div>
+        </Card>
+
+        {/* TaskManager component */}
+        <div className="mt-8" id="tasks">
+          <TaskManager />
         </div>
-        
+
         {/* API data display will go here */}
-        <div className="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg p-6">
-          <h2 className="text-2xl font-bold mb-4">API Data</h2>
+        <Card title="API Data" className="mt-8" id="api">
           <p className="text-gray-500 dark:text-gray-400">
             Fetch and display data from an API here
           </p>
-        </div>
-      </main>
-
-      {/* Footer component will go here */}
-      <footer className="bg-white dark:bg-gray-800 shadow mt-auto">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-gray-500 dark:text-gray-400">
-            © {new Date().getFullYear()} PLP Task Manager. All rights reserved.
-          </p>
-        </div>
-      </footer>
-    </div>
+        </Card>
+      </Layout>
+    </ThemeProvider>
   );
 }
 

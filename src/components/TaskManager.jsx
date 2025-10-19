@@ -1,20 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Button from './Button';
+import { useTheme } from '../context/ThemeContext';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 /**
- * Custom hook for managing tasks with localStorage persistence
+ * Custom hook for managing tasks using the generic useLocalStorage hook
  */
-const useLocalStorageTasks = () => {
-  // Initialize state from localStorage or with empty array
-  const [tasks, setTasks] = useState(() => {
-    const savedTasks = localStorage.getItem('tasks');
-    return savedTasks ? JSON.parse(savedTasks) : [];
-  });
-
-  // Update localStorage when tasks change
-  useEffect(() => {
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-  }, [tasks]);
+const useTasks = () => {
+  const [tasks, setTasks] = useLocalStorage('tasks', []);
 
   // Add a new task
   const addTask = (text) => {
@@ -52,7 +45,8 @@ const useLocalStorageTasks = () => {
  * TaskManager component for managing tasks
  */
 const TaskManager = () => {
-  const { tasks, addTask, toggleTask, deleteTask } = useLocalStorageTasks();
+  const { tasks, addTask, toggleTask, deleteTask } = useTasks();
+  const { theme, toggleTheme } = useTheme();
   const [newTaskText, setNewTaskText] = useState('');
   const [filter, setFilter] = useState('all');
 
